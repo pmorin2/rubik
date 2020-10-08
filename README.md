@@ -1,1 +1,2 @@
 # rubik
+pip install termcolor
