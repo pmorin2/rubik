@@ -56,14 +56,36 @@ if __name__ == '__main__':
   cube.printCubeColor()
   algo = GeneralAlgorithm(cube)
   result = algo.run()
-  i = 0
-  while (i < len(result) - 1):
-    if (not "2" in result[i]) and (result[i] == result[i + 1]):
-        result[i] = result[i][0] + "2"
-        result.pop(i + 1)
-    i += 1
+  loopCheck = True
+  while (loopCheck):
+    loopCheck = False
+    i = 0
+    while (i < len(result) - 1):
+        if (not "2" in result[i]) and (result[i] == result[i + 1]):
+            result[i] = result[i][0] + "2"
+            result.pop(i + 1)
+            loopCheck = True
+        elif ("2" in result[i]) and (result[i] == result[i + 1]):
+            result.pop(i + 1)
+            result.pop(i)
+            loopCheck = True
+        elif (not "2" in result[i]) and (not "2" in result[i + 1]) and (result[i] != result[i + 1]) and (result[i][0] == result[i + 1][0]):
+            result.pop(i + 1)
+            result.pop(i)
+            loopCheck = True
+        elif ("2" in result[i] or "2" in result[i + 1]) and (result[i] != result[i + 1]) and (result[i][0] == result[i + 1][0]):
+            if ("'" in result[i] or "'" in result[i + 1]):
+                result[i] = result[i][0]
+                result.pop(i + 1)
+                loopCheck = True
+            else:
+                result[i] = result[i][0] + "'"
+                result.pop(i + 1)
+                loopCheck = True
+        i += 1
 
   print(result)
+  print(len(result))
   cubeTry.printCubeColor()
   for instruction in result:
     switcherTry[instruction]()
