@@ -19,9 +19,6 @@ class Step2:
         if ((self.colorPos.checkPositionColor(self.cubeOrigin, cubeCurrent, "white", "green", "red")) == False):
             self.moving(cubeCurrent, solveMoveList, "white", "green", "red", "left")
 
-#     def updatePositionList(self, cub, colorOne, colorTwo, colorThree):
-#         return (self.colorPos.corner(cub, colorOne, colorTwo, colorThree))
-
     def moving(self, cubeCurrent, solveMoveList, colorOne, colorTwo, colorThree, face):
         self.listPositionCubOrigin = self.colorPos.corner(self.cubeOrigin, colorOne, colorTwo, colorThree)
         self.listPositionCubCurrent = self.colorPos.corner(cubeCurrent, colorOne, colorTwo, colorThree)

@@ -182,7 +182,7 @@ class ColorPos:
             for i in range(0, 2):
                 if (listPositionCubOrigin[i] != listPositionCubCurrent[i]):
                     return (False)
-            return True
+            return (True)
         else:
             listPositionCubCurrent = self.corner(cubCurrent, colorOne, colorTwo, colorThree)
             listPositionCubOrigin = self.corner(cubOrigin, colorOne, colorTwo, colorThree)
@@ -190,4 +190,4 @@ class ColorPos:
                for j in range(0, 4):
                     if (listPositionCubOrigin[i][j] != listPositionCubCurrent[i][j]):
                         return (False)
-            return True
+            return (True)
