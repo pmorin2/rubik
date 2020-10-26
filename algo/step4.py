@@ -18,7 +18,7 @@ class Step4:
         if (one == 4):
             return True
         if (one == 1):
-            self.applyMix(self, "F L D L' D' F'", cubeCurrent, solveMoveList)
+            self.applyMix("F L D L' D' F'", cubeCurrent, solveMoveList)
 
         one,two = self.checkBackState(cubeCurrent.down, "yellow")
         if (one == 2 and two == 0):

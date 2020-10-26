@@ -12,6 +12,8 @@ class Cube:
         self.left = self.listFill(self.colors[3])
         self.upper = self.listFill(self.colors[4])
         self.down = self.listFill(self.colors[5])
+        self.hash = ""
+        self.mathHash()
 
     def listFill(self, color):
         list = []
@@ -242,18 +244,18 @@ class Cube:
                 if space:
                     for i in range(3):
                         print('            ', end='')
-                print('[', self.switcher.get(self.beautifulWhite(self.upper[row][col])), ']', end=' ')
+                print('[', self.switcher.get(self.upper[row][col]), ']', end=' ')
                 space = False
         for row in range(3):
             print('\n')
             for col in range(3):
-                print('[', self.switcher.get(self.beautifulWhite(self.left[row][col])), ']', end=' ')
+                print('[', self.switcher.get(self.left[row][col]), ']', end=' ')
             for col in range(3):
-                print('[', self.switcher.get(self.beautifulWhite(self.front[row][col])), ']', end=' ')
+                print('[', self.switcher.get(self.front[row][col]), ']', end=' ')
             for col in range(3):
-                print('[', self.switcher.get(self.beautifulWhite(self.right[row][col])), ']', end=' ')
+                print('[', self.switcher.get(self.right[row][col]), ']', end=' ')
             for col in range(3):
-                print('[', self.switcher.get(self.beautifulWhite(self.back[row][col])), ']', end=' ')
+                print('[', self.switcher.get(self.back[row][col]), ']', end=' ')
         for row in range(3):
             print('\n')
             space = True
@@ -261,7 +263,7 @@ class Cube:
                 if space:
                     for i in range(3):
                         print('           ', end=' ')
-                print('[', self.switcher.get(self.beautifulWhite(self.down[row][col])), ']', end=' ')
+                print('[', self.switcher.get(self.down[row][col]), ']', end=' ')
                 space = False
         print('\n')
 
@@ -271,3 +273,17 @@ class Cube:
         return color
 
 ########  ALLOW TO CHECK IF CUBE IS DONE  ########
+
+    def mathHash(self):
+        hashObj = hashlib.md5()
+        string = ""
+        for i in range(3):
+            for j in range(3):
+                string = string + self.front[i][j]
+                string = string + self.back[i][j]
+                string = string + self.right[i][j]
+                string = string + self.left[i][j]
+                string = string + self.upper[i][j]
+                string = string + self.down[i][j]
+        hashObj.update(string.encode('utf-8'))
+        self.hash = hashObj.hexdigest()

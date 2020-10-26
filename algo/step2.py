@@ -83,20 +83,24 @@ class Step2:
             "F\'":cubeCurrent.moveBackF, "B\'":cubeCurrent.moveBackB, "R\'":cubeCurrent.moveBackR, "L\'":cubeCurrent.moveBackL, "U\'":cubeCurrent.moveBackU, "D\'":cubeCurrent.moveBackD,
             "F2":cubeCurrent.moveDoubleF, "B2":cubeCurrent.moveDoubleB, "R2":cubeCurrent.moveDoubleR, "L2":cubeCurrent.moveDoubleL, "U2":cubeCurrent.moveDoubleU, "D2":cubeCurrent.moveDoubleD
         }
+#         print("BEFORE")
         for i in range(0, 3):
+#             print("YO")
             if (self.listPositionCubCurrent[i][1] == colorOne and self.listPositionCubCurrent[i][0] == face):
-                if (face == "front"):
+                mix = ""
+                if (face == "front" and cubeCurrent.front[2][2] == colorOne and cubeCurrent.down[0][2] == "red"):
                     mix = "D' R' D R"
-                elif (face == "right"):
+                elif (face == "right" and cubeCurrent.right[2][2] == colorOne and cubeCurrent.down[2][2] == "blue"):
                     mix = "D' B' D B"
-                elif (face == "back"):
+                elif (face == "back" and cubeCurrent.back[2][2] == colorOne and cubeCurrent.down[2][0] == "magenta"):
                     mix = "D' L' D L"
-                elif (face == "left"):
+                elif (face == "left" and cubeCurrent.left[2][2] == colorOne and cubeCurrent.down[0][0] == "green"):
                     mix = "D' F' D F"
-                for instruction in mix.split():
-                    switcher[instruction]()
-                    solveMoveList.append(instruction)
-                return(self)
+                if mix:
+                    for instruction in mix.split():
+                        switcher[instruction]()
+                        solveMoveList.append(instruction)
+                    return(self)
         while ((self.colorPos.checkPositionColor(self.cubeOrigin, cubeCurrent, colorOne, colorTwo, colorThree)) == False):
             if (face == "front"):
                 mix = "R' D' R D"
